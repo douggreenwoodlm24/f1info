@@ -1,29 +1,4 @@
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  styles: [`
-  	.list-group-item:first-child {
-  		border-top-left-radius: 0;
-  		border-top-right-radius: 0;
-  		border-top: 0;
-  	}
-  `]
-})
-export class AppComponent {
-  query: string;
-  drivers: object;
-
-  showDriver(item){
-  	this.query = item.name;
-  	item.highlight = !item.highlight;
-  }
-
-  constructor(){
-  	this.query = '';
-  	this.drivers = [
+[
   {
     "name":"Lewis Hamilton",
     "shortname":"lewis_hamilton",
@@ -145,5 +120,3 @@ export class AppComponent {
     "bio":"Romain Grosjean (born 17 April 1986) is a racing driver, currently racing for the Haas F1 Team. He races under the French flag[2] in Formula One although he was born in Geneva and holds dual Franco-Swiss nationality."
   }
 ]
-  }
-}
