@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { Component } from '@angular/core';
   	}
   `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   query: string;
   drivers: object;
 
@@ -21,129 +22,14 @@ export class AppComponent {
   	item.highlight = !item.highlight;
   }
 
-  constructor(){
+  constructor( private http: HttpClient ){
   	this.query = '';
-  	this.drivers = [
-  {
-    "name":"Lewis Hamilton",
-    "shortname":"lewis_hamilton",
-    "team":"Mercedes",
-    "bio":"Lewis Carl Davidson Hamilton MBE (born 7 January 1985) is a British racing driver who races in Formula One for Mercedes AMG Petronas. A four-time Formula One World Champion, he is often considered the best driver of his generation and widely regarded as one of the greatest drivers in the history of the sport."
-  },
-    {
-    "name":"Valtteri Bottas",
-    "shortname":"valtteri_bottas",
-    "team":"Mercedes",
-    "bio":"Valtteri Viktor Bottas (born 28 August 1989) is a Finnish racing driver currently competing in Formula One with Mercedes. Bottas previously drove for Williams from 2013 to 2016. He currently resides in Monaco. In his first four races for Mercedes in 2017, Bottas achieved his first Formula One pole position in Bahrain and his first victory at the following event in Russia. He finished the 2017 season taking pole position, fastest lap, and the race win at Abu Dhabi."
-},
-  {
-    "name":"Sebastian Vettel",
-    "shortname":"sebastian_vettel",
-    "team":"Ferrari",
-    "bio":"Sebastian Vettel (born 3 July 1987)[2] is a German racing driver currently driving in Formula One for Scuderia Ferrari. He is a four-time Formula One World Champion, having won the championship in 2010, 2011, 2012 and 2013 with Red Bull Racing."
-  },
-    {
-    "name":"Kimi Raikkonen",
-    "shortname":"kimi_raikkonen",
-    "team":"Ferrari",
-    "bio":"Kimi-Matias Räikkönen (born 17 October 1979), nicknamed Iceman, is a Finnish racing driver currently driving in Formula One for Scuderia Ferrari. He won the 2007 FIA Formula One World Championship, in his first season at Ferrari. After nine seasons racing in Formula One, he competed in the World Rally Championship in 2010 and 2011, then returning to Formula One from 2012."
-  },
-    {
-    "name":"Fernando Alonso",
-    "shortname":"fernando_alonso",
-    "team":"McLaren",
-    "bio":"Fernando Alonso Díaz (born 29 July 1981) is a Spanish Formula One racing driver currently racing for McLaren F1 team.[2] He is a two-time Formula One World Champion, and is often regarded as one of the greatest Formula One drivers in the history of the sport.[3][4][5][6][7][8][9][10] He has contested 17 seasons of Formula One. Outside Formula One, Alonso is currently leading the 2018–19 FIA World Endurance Championship with Toyota Gazoo Racing. He won the 2018 24 Hours of Le Mans on his first attempt with co-drivers Kazuki Nakajima and Sébastien Buemi."
-  },
-  {
-    "name":"Stoffel Vandoorne",
-    "shortname":"stoffel_vandoorne",
-    "team":"McLaren",
-    "bio":"Stoffel Vandoorne (born 26 March 1992) is a professional racing driver from Belgium, currently competing in Formula One for McLaren. Vandoorne currently resides in both Monte Carlo (Monaco) and Roeselare (Belgium)."
-},  
-  {
-    "name":"Nico Hulkenberg",
-    "shortname":"nico_hulkenberg",
-    "team":"Renault",
-    "bio":"Nicolas Hülkenberg (born 19 August 1987) is a German professional racing driver currently racing for the Renault Sport F1 Team. In 2015, he also contested in two rounds of the 2015 FIA World Endurance Championship season for Porsche, winning the 2015 24 Hours of Le Mans in his first attempt. He was the 2009 champion of the GP2 Series, and is a previous champion of both the Formula 3 Euro Series and A1 Grand Prix, as part of A1 Team Germany."
-},
-  {
-    "name":"Carlos Sainz",
-    "shortname":"carlos_sainz",
-    "team":"Renault",
-    "bio":"Carlos Sainz Vázquez de Castro, known as Carlos Sainz Jr. or simply Carlos Sainz, (born 1 September 1994) is a Spanish Formula One racing driver and the son of former double World Rally Champion Carlos Sainz. In 2012 Sainz raced in the British and European Formula 3 championships for Carlin. He raced for DAMS in Formula Renault 3.5 in 2014 winning the championship before moving to F1 with Toro Rosso. In 2017 it was announced that for the 2018 season he will race for the Renault F1 team on a season long loan, whilst still contracted to Red Bull Racing. An early fulfilment of this arrangement was announced during the 2017 Japanese Grand Prix weekend; Sainz would take Jolyon Palmer's Renault seat beginning with the 2017 United States Grand Prix. Sainz will drive for McLaren starting in 2019, replacing fellow countryman Fernando Alonso."
-},
-  {
-    "name":"Max Verstappen",
-    "shortname":"max_verstappen",
-    "team":"Red Bull",
-    "bio":"Max Emilian Verstappen (born 30 September 1997) is a Dutch racing driver who competes in Formula One with Red Bull Racing. Aged 17 years, 166 days, he became the youngest driver to compete in Formula 1 at the 2015 Australian Grand Prix for Scuderia Toro Rosso. He is also the youngest driver to lead a lap during a Formula One Grand Prix, youngest driver to set the fastest lap during a Formula One Grand Prix, youngest driver to score points, youngest driver to secure a podium and youngest Formula One Grand Prix winner in history. After spending the entire 2015 season with Scuderia Toro Rosso, he started his 2016 campaign with the Italian team, before being promoted into Red Bull Racing mid-season as a replacement for Daniil Kvyat. He won the 2016 Spanish Grand Prix in his debut race for Red Bull Racing at the age of 18, becoming the youngest-ever winner of a Grand Prix and the first racing under the Dutch flag. He is the son of former Formula One driver Jos Verstappen."
-},
-  {
-    "name":"Daniel Ricciardo",
-    "shortname":"daniel_ricciardo",
-    "team":"",
-    "bio":"Daniel Joseph Ricciardo (born 1 July 1989) is an Australian racing driver who is currently competing in Formula One for Red Bull Racing. He entered Formula One as a test driver for Scuderia Toro Rosso, with which he raced for two seasons. After Mark Webber announced his retirement from Formula One, Ricciardo was confirmed as his replacement at Red Bull Racing for 2014. In his first season with Red Bull, Ricciardo finished third in the championship with his first three Formula One wins, in Canada, Hungary, and Belgium. After two years without victory, Ricciardo won the 2016 Malaysian Grand Prix, eventually sealing third in the championship for the second time in three years at the 2016 Mexican Grand Prix. Ricciardo won the Azerbaijan Grand Prix in 2017 and the Chinese and the Monaco Grand Prix in 2018. On 3 August 2018 it was announced that he will be joining Renault F1 on a 2 year contract for the 2019/2020 F1 seasons."
-},
-  {
-    "name":"Sergio Perez",
-    "shortname":"sergio_perez",
-    "team":"Force India",
-    "bio":"Sergio Pérez Mendoza (born 26 January 1990) also known as Checo Pérez, is a Mexican racing driver, currently driving in Formula One for Racing Point Force India. Pérez was a member of the Ferrari Driver Academy until 2012. He took his first Formula One podium at the 2012 Malaysian Grand Prix with Sauber, a drive which won him plaudits and fuelled speculation of a move to Ferrari in the near future."
-},
-  {
-    "name":"Esteban Ocon",
-    "shortname":"esteban_ocon",
-    "team":"Force India",
-    "bio":"Esteban Ocon (born 17 September 1996) is a French racing driver who currently drives in Formula One for Racing Point Force India. He made his Formula One debut for Manor Racing in the 2016 Belgian Grand Prix, replacing Rio Haryanto. Ocon is part of the Mercedes-Benz driver development programme. He holds the all-time record for most consecutive finishes from start of career, with 27."
-},
-  {
-    "name":"Brendon Hartley",
-    "shortname":"brendon_hartley",
-    "team":"Toro Rosso",
-    "bio":"Brendon Hartley (born 10 November 1989) is a New Zealand professional racing driver currently competing in Formula One for Scuderia Toro Rosso. He won the 2015 FIA World Endurance Championship, alongside his teammates Mark Webber and Timo Bernhard, and also went on to win the 2017 FIA World Endurance Championship alongside Bernhard and Earl Bamber. He won the 2017 24 Hours of Le Mans with Bamber and Bernhard. He made his Formula One debut for Scuderia Toro Rosso at the 2017 United States Grand Prix."
-},
-  {
-    "name":"Pierre Gasly",
-    "shortname":"pierre_gasly",
-    "team":"Toro Rosso",
-    "bio":"Pierre Gasly (born 7 February 1996 in Rouen) is a French racing driver, currently racing in Formula One for Scuderia Toro Rosso. He was the 2016 GP2 Series champion, and the runner-up in the 2014 Formula Renault 3.5 Series and the 2017 Super Formula Championship. He made his Formula One début at the 2017 Malaysian Grand Prix. He will drive for Aston Martin Red Bull Racing starting in 2019."
-},
-{
-    "name":"Marcus Ericsson",
-    "shortname":"marcus_ericsson",
-    "team":"Sauber",
-    "bio":"Marcus Ericsson (born 2 September 1990) is a Swedish racing driver currently racing for Sauber in Formula One, where he is contracted to the end of the 2018 season. After a successful début in car racing in 2007 which saw him take the British Formula BMW title with Fortec Motorsport, he moved up into the British team's British Formula Three Championship squad. After finishing as one of the top rookies in the category, Ericsson turned his attentions to the All-Japan Formula Three Championship where he won the championship in his debut year. In 2010, he moved up to the GP2 Series where he secured one victory during his maiden campaign for Super Nova Racing. Between 2011 and 2012, Ericsson drove for iSport. Ericsson completed the 2013 GP2 season with DAMS, and debuted in Formula One in 2014 with Caterham F1."
-},
-{
-    "name":"Charles Leclerc",
-    "shortname":"charles_leclerc",
-    "team":"Sauber",
-    "bio":"Charles Leclerc (born 16 October 1997) is a Monégasque racing driver, currently driving for Alfa Romeo-Sauber F1 Team in the 2018 FIA Formula One World Championship. A member of the Ferrari Driver Academy, he won the GP3 Series championship in 2016 and the FIA Formula 2 Championship in 2017. Leclerc has agreed on a contract with Scuderia Ferrari for the 2019 season where he will drive alongside Sebastian Vettel."
-},
-  {
-    "name":"Lance Stroll",
-    "shortname":"lance_stroll",
-    "team":"Williams",
-    "bio":"Lance Stroll (born 29 October 1998) is a Canadian racing driver, racing under the Canadian flag, currently driving in Formula One with Williams. He was Italian F4 champion in 2014, Toyota Racing Series champion in 2015, and 2016 FIA European Formula 3 champion. He was part of the Ferrari Driver Academy from 2010 to 2015. He achieved his first podium finish, a 3rd place, at the 2017 Azerbaijan Grand Prix, becoming the second-youngest driver to finish an F1 race on the podium and the youngest to do so during his rookie season."
-},
-  {
-    "name":"Sergey Sirotkin",
-    "shortname":"sergey_sirotkin",
-    "team":"Williams",
-    "bio":"Sergey Olegovich Sirotkin (born 27 August 1995) is a Russian professional racing driver currently competing in Formula One for Williams."
-},
-  {
-    "name":"Kevin Magnussen",
-    "shortname":"kevin_magnussen",
-    "team":"HAAS",
-    "bio":"Kevin Jan Magnussen (born 5 October 1992) is a Danish racing driver, currently driving for the Haas F1 Team. The son of four-time Le Mans GT class winner, GM factory driver and former Formula One driver Jan Magnussen, Kevin Magnussen came up through McLaren Formula One team's Young Driver Programme and drove for McLaren in the 2014 FIA Formula One World Championship."
-},
-  {
-    "name":"Romain Grosjean",
-    "shortname":"romain_grosjean",
-    "team":"HAAS",
-    "bio":"Romain Grosjean (born 17 April 1986) is a racing driver, currently racing for the Haas F1 Team. He races under the French flag[2] in Formula One although he was born in Geneva and holds dual Franco-Swiss nationality."
   }
-]
+
+  ngOnInit(): void {
+    this.http.get<Object>('../assets/data.json').subscribe(
+      data => {
+        this.drivers = data;
+      })
   }
 }
