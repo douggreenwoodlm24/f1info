@@ -15,7 +15,7 @@
     "name":"Sebastian Vettel",
     "shortname":"sebastian_vettel",
     "team":"Ferrari",
-    "bio":"Sebastian Vettel (born 3 July 1987)[2] is a German racing driver currently driving in Formula One for Scuderia Ferrari. He is a four-time Formula One World Champion, having won the championship in 2010, 2011, 2012 and 2013 with Red Bull Racing."
+    "bio":"Sebastian Vettel (born 3 July 1987) is a German racing driver currently driving in Formula One for Scuderia Ferrari. He is a four-time Formula One World Champion, having won the championship in 2010, 2011, 2012 and 2013 with Red Bull Racing."
   },
     {
     "name":"Kimi Raikkonen",
@@ -27,7 +27,7 @@
     "name":"Fernando Alonso",
     "shortname":"fernando_alonso",
     "team":"McLaren",
-    "bio":"Fernando Alonso Díaz (born 29 July 1981) is a Spanish Formula One racing driver currently racing for McLaren F1 team.[2] He is a two-time Formula One World Champion, and is often regarded as one of the greatest Formula One drivers in the history of the sport.[3][4][5][6][7][8][9][10] He has contested 17 seasons of Formula One. Outside Formula One, Alonso is currently leading the 2018–19 FIA World Endurance Championship with Toyota Gazoo Racing. He won the 2018 24 Hours of Le Mans on his first attempt with co-drivers Kazuki Nakajima and Sébastien Buemi."
+    "bio":"Fernando Alonso Díaz (born 29 July 1981) is a Spanish Formula One racing driver currently racing for McLaren F1 team. He is a two-time Formula One World Champion, and is often regarded as one of the greatest Formula One drivers in the history of the sport. He has contested 17 seasons of Formula One. Outside Formula One, Alonso is currently leading the 2018–19 FIA World Endurance Championship with Toyota Gazoo Racing. He won the 2018 24 Hours of Le Mans on his first attempt with co-drivers Kazuki Nakajima and Sébastien Buemi."
   },
   {
     "name":"Stoffel Vandoorne",
@@ -117,6 +117,6 @@
     "name":"Romain Grosjean",
     "shortname":"romain_grosjean",
     "team":"HAAS",
-    "bio":"Romain Grosjean (born 17 April 1986) is a racing driver, currently racing for the Haas F1 Team. He races under the French flag[2] in Formula One although he was born in Geneva and holds dual Franco-Swiss nationality."
+    "bio":"Romain Grosjean (born 17 April 1986) is a racing driver, currently racing for the Haas F1 Team. He races under the French flag in Formula One although he was born in Geneva and holds dual Franco-Swiss nationality."
   }
 ]
