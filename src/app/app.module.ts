@@ -5,11 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DriverItemsComponent } from './driver-items/driver-items.component';
+import { SearchDriversPipe } from './search-drivers.pipe';
+import { DriverDetailsComponent } from './driver-details/driver-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DriverItemsComponent
+    DriverItemsComponent,
+    SearchDriversPipe,
+    DriverDetailsComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule
