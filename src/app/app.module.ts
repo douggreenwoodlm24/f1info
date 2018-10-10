@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { DriverItemsComponent } from './driver-items/driver-items.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DriverItemsComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule
